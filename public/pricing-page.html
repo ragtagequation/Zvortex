@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZVortex - Pricing Plans</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #1a202c, #2d3748);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(to right, #a78bfa, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .plans-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .plan {
+            background-color: rgba(26, 32, 44, 0.8);
+            border-radius: 0.5rem;
+            padding: 2rem;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .plan h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #a78bfa;
+        }
+        .price {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        .price span {
+            font-size: 1rem;
+            font-weight: normal;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-bottom: 2rem;
+        }
+        li {
+            margin-bottom: 0.5rem;
+        }
+        .cta-button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.25rem;
+            background: linear-gradient(to right, #a78bfa, #ec4899);
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: opacity 0.3s ease;
+        }
+        .cta-button:hover {
+            opacity: 0.9;
+        }
+        .popular {
+            position: relative;
+            border: 2px solid #a78bfa;
+            transform: scale(1.05);
+        }
+        .most-popular {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #a78bfa;
+            color: #fff;
+            padding: 0.25rem 1rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Choose Your ZVortex Plan</h1>
+        <div class="plans-container">
+            <div class="plan">
+                <h2>Basic Plan</h2>
+                <div class="price">₹8,000<span>/month</span></div>
+                <ul>
+                    <li>Create 1 advertising campaign</li>
+                    <li>Advertising on Instagram and Google</li>
+                    <li>Personalized AI bot</li>
+                    <li>Basic analytics</li>
+                </ul>
+                <a href="#" class="cta-button">Get Started</a>
+            </div>
+            <div class="plan popular">
+                <div class="most-popular">Most Popular</div>
+                <h2>Pro Plan</h2>
+                <div class="price">₹15,000<span>/month</span></div>
+                <ul>
+                    <li>All Basic Plan features</li>
+                    <li>Instagram site creation</li>
+                    <li>Custom website development</li>
+                    <li>Full-time ads on Google, YouTube, Facebook, and Instagram</li>
+                    <li>Advanced analytics and reporting</li>
+                </ul>
+                <a href="#" class="cta-button">Go Pro</a>
+            </div>
+            <div class="plan">
+                <h2>Enterprise Plan</h2>
+                <div class="price">₹25,000<span>/month</span></div>
+                <ul>
+                    <li>All Pro Plan features</li>
+                    <li>Multiple campaign management</li>
+                    <li>Dedicated account manager</li>
+                    <li>Priority customer support</li>
+                    <li>Custom AI solutions</li>
+                    <li>Comprehensive market analysis</li>
+                </ul>
+                <a href="#" class="cta-button">Contact Sales</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
