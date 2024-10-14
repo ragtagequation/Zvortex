@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'
-import { ChevronDown, Menu, X } from 'lucide-react'
+import { ChevronDown, Menu, X, Sun, Moon } from 'lucide-react'
 
 import 'swiper/css'
 import 'swiper/css/navigation'
@@ -12,12 +12,22 @@ import './globals.css'
 export default function LandingPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrollY, setScrollY] = useState(0)
+  const [isDarkMode, setIsDarkMode] = useState(true)
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY)
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  useEffect(() => {
+    document.body.classList.toggle('dark', isDarkMode)
+    document.body.classList.toggle('light', !isDarkMode)
+  }, [isDarkMode])
+
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode)
+  }
 
   const navVariants = {
     hidden: { opacity: 0, y: -50 },
@@ -79,10 +89,10 @@ export default function LandingPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-white">
+    <div className={`min-h-screen ${isDarkMode ? 'bg-gradient-to-b from-gray-900 to-gray-800' : 'bg-gradient-to-b from-gray-100 to-white'} text-gray-900 dark:text-white transition-colors duration-300`}>
       <motion.header
         className={`fixed w-full z-50 transition-colors duration-300 ${
-          scrollY > 50 ? 'bg-gray-900/90 backdrop-blur-md' : ''
+          scrollY > 50 ? (isDarkMode ? 'bg-gray-900/90' : 'bg-white/90') + ' backdrop-blur-md' : ''
         }`}
         initial="hidden"
         animate="visible"
@@ -98,11 +108,11 @@ export default function LandingPage() {
             <a href="pricing-page.html" className="hover:text-purple-400 transition-colors">Pricing</a>
             <a href="#contact" className="hover:text-purple-400 transition-colors">Contact</a>
           </nav>
-          <div className="hidden md:flex space-x-4">
-            {/*<a href="login-page.html" className="px-4 py-2 rounded-md border border-purple-500 hover:bg-purple-500 transition-colors">
-              Sign In
-            </a>*/}
-            <a href="x.html" className="px-4 py-2 rounded-md bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 transition-colors">
+          <div className="hidden md:flex space-x-4 items-center">
+            <button onClick={toggleTheme} className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 transition-colors">
+              {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
+            <a href="x.html" className="px-4 py-2 rounded-md bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 transition-colors text-white">
               Request Demo
             </a>
           </div>
@@ -115,17 +125,17 @@ export default function LandingPage() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="md:hidden bg-gray-800 py-4"
+            className={`md:hidden ${isDarkMode ? 'bg-gray-800' : 'bg-gray-100'} py-4`}
           >
             <nav className="flex flex-col space-y-4 px-4">
               <a href="#services" className="hover:text-purple-400 transition-colors">Services</a>
               <a href="#about" className="hover:text-purple-400 transition-colors">About Us</a>
               <a href="#pricing" className="hover:text-purple-400 transition-colors">Pricing</a>
               <a href="#contact" className="hover:text-purple-400 transition-colors">Contact</a>
-               {/* <a href="login-page.html" className="px-4 py-2 rounded-md border border-purple-500 hover:bg-purple-500 transition-colors text-center">
-                Sign In
-              </a>*/}
-              <a href="x.html" className="px-4 py-2 rounded-md bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 transition-colors text-center">
+              <button onClick={toggleTheme} className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 transition-colors self-start">
+                {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+              </button>
+              <a href="x.html" className="px-4 py-2 rounded-md bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 transition-colors text-white text-center">
                 Request Demo
               </a>
             </nav>
@@ -168,7 +178,7 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <section id="image-carousel" className="py-20 bg-gray-800">
+        <section id="image-carousel" className={`py-20 ${isDarkMode ? 'bg-gray-800' : 'bg-gray-200'}`}>
           <div className="container mx-auto px-4">
             <Swiper
               modules={[Navigation, Pagination, Autoplay]}
@@ -223,7 +233,7 @@ export default function LandingPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.2 }}
-                  className="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
+                  className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow`}
                 >
                   <h3 className="text-xl font-semibold mb-4">{feature.title}</h3>
                   <p>{feature.description}</p>
@@ -234,7 +244,7 @@ export default function LandingPage() {
         </section>
 
         
-        <section id="about" className="py-20 bg-gray-800 overflow-hidden">
+        <section id="about" className={`py-20 ${isDarkMode ? 'bg-gray-800' : 'bg-gray-200'} overflow-hidden`}>
   <div className="container mx-auto px-4">
     <motion.h2
       initial={{ opacity: 0, y: 20 }}
@@ -258,47 +268,6 @@ export default function LandingPage() {
       </div>
     </div>
 
-    <section id="ai-marketing" className="py-20 bg-gray-900">
-        <div className="container mx-auto px-4">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-bold mb-16 text-center"
-          >
-            AI-Powered Marketing Solutions
-          </motion.h2>
-          
-          <div className="grid md:grid-cols-2 gap-16">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="bg-gray-800 p-8 rounded-lg shadow-xl"
-            >
-              <h3 className="text-2xl font-semibold mb-4 text-purple-400">AI-Driven Campaign Optimization</h3>
-              <p className="text-gray-300 mb-6">
-                Harness the power of artificial intelligence to supercharge your marketing campaigns. Our AI algorithms analyze vast amounts of data to identify trends, predict customer behavior, and optimize your campaigns in real-time for maximum ROI.
-              </p>
-              <img src="AI.png" alt="AI Campaign Optimization" className="w-full rounded-lg shadow-md" />
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="bg-gray-800 p-8 rounded-lg shadow-xl"
-            >
-              <h3 className="text-2xl font-semibold mb-4 text-purple-400">Personalized Customer Experiences</h3>
-              <p className="text-gray-300 mb-6">
-                Deliver tailored marketing messages to each customer with our AI-powered personalization engine. Analyze customer data, behavior, and preferences to create hyper-targeted campaigns that resonate with your audience and drive conversions.
-              </p>
-              <img src="pic1.png" alt="Personalized Customer Experiences" className="w-full rounded-lg shadow-md" />
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
     <motion.h3
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -315,89 +284,94 @@ export default function LandingPage() {
       navigation
       pagination={{ clickable: true }}
       autoplay={{ delay: 5000 }}
-      className="bg-gray-700 rounded-lg overflow-hidden"
+      className={`${isDarkMode ? 'bg-gray-700' : 'bg-white'} rounded-lg overflow-hidden shadow-lg`}
     >
       {aboutSlides.map((slide, index) => (
         <SwiperSlide key={index} className="p-11">
-          <h4 className="text-xl font-semibold mb-4">{slide.title}</h4>
-          <p className="text-gray-300">{slide.content}</p>
+          <h4 className={`text-xl font-semibold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>{slide.title}</h4>
+          <p className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>{slide.content}</p>
         </SwiperSlide>
       ))}
     </Swiper>
   </div>
 </section>
 
-        <section id="pricing" className="py-20">
-          <div className="container mx-auto px-4">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-3xl md:text-4xl font-bold mb-12 text-center"
-            >
-              Pricing Plans
-            </motion.h2>
-            <div className="grid md:grid-cols-3 gap-8">
-              {[
-                {
-                  name: "Starter",
-                  price: "$99/month",
-                  features: ["Up to 5 campaigns", "Basic analytics", "Email support"],
-                  cta: "Get Started",
-                  highlighted: false
-                },
-                {
-                  name: "Professional",
-                  price: "$299/month",
-                  features: ["Unlimited campaigns", "Advanced analytics", "24/7 support", "AI-powered optimization"],
-                  cta: "Get Started",
-                  highlighted: true
-                },
-                {
-                  name: "Enterprise",
-                  price: "Custom",
-                  features: ["Custom solutions", "Dedicated account manager", "On-site training", "API access"],
-                  cta: "Contact Sales",
-                  highlighted: false
-                }
-              ].map((plan, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.2 }}
-                  className={`bg-gray-800 p-6 rounded-lg shadow-lg ${
-                    plan.highlighted ? 'ring-2 ring-purple-500 scale-105' : ''
-                  }`}
-                >
-                  <h3 className="text-xl font-semibold mb-4">{plan.name}</h3>
-                  <p className="text-3xl font-bold mb-6">{plan.price}</p>
-                  <ul className="mb-8 space-y-2">
-                    {plan.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-center">
-                        <ChevronDown className="text-green-500 mr-2" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                  <a
-                    href="#pricing"
-                    className={`block text-center px-4 py-2 rounded-md transition-colors ${
-                      plan.highlighted
-                        ? 'bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600'
-                        : 'bg-gray-700 hover:bg-gray-600'
-                    }`}
-                  >
-                    {plan.cta}
-                  </a>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
+        
+<section id="pricing" className="py-20">
+  <div className="container mx-auto px-4">
+    <motion.h2
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="text-3xl md:text-4xl font-bold mb-12 text-center"
+    >
+      Pricing Plans
+    </motion.h2>
+    <div className="grid md:grid-cols-3 gap-8">
+      {[
+        {
+          name: "Starter",
+          price: "$99/month",
+          features: ["Up to 5 campaigns", "Basic analytics", "Email support"],
+          cta: "Get Started",
+          highlighted: false
+        },
+        {
+          name: "Professional",
+          price: "$299/month",
+          features: ["Unlimited campaigns", "Advanced analytics", "24/7 support", "AI-powered optimization"],
+          cta: "Get Started",
+          highlighted: true
+        },
+        {
+          name: "Enterprise",
+          price: "Custom",
+          features: ["Custom solutions", "Dedicated account manager", "On-site training", "API access"],
+          cta: "Contact Sales",
+          highlighted: false
+        }
+      ].map((plan, index) => (
+        <motion.div
+          key={index}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: index * 0.2 }}
+          className={`${
+            isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'
+          } p-6 rounded-lg shadow-lg ${
+            plan.highlighted ? 'ring-2 ring-purple-500 scale-105' : ''
+          } transition-all duration-300`}
+        >
+          <h3 className="text-xl font-semibold mb-4">{plan.name}</h3>
+          <p className="text-3xl font-bold mb-6">{plan.price}</p>
+          <ul className="mb-8 space-y-2">
+            {plan.features.map((feature, featureIndex) => (
+              <li key={featureIndex} className="flex items-center">
+                <ChevronDown className="text-green-500 mr-2" />
+                {feature}
+              </li>
+            ))}
+          </ul>
+          <a
+            href="#pricing"
+            className={`block text-center px-4 py-2 rounded-md transition-colors ${
+              plan.highlighted
+                ? 'bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white'
+                : isDarkMode
+                ? 'bg-gray-700 hover:bg-gray-600 text-white'
+                : 'bg-gray-200 hover:bg-gray-300 text-gray-900'
+            }`}
+          >
+            {plan.cta}
+          </a>
+        </motion.div>
+      ))}
+    </div>
+  </div>
+</section>
 
-        <section id="contact" className="py-20 bg-gray-800">
+        <section id="contact" className={`py-20 ${isDarkMode ? 'bg-gray-800' : 'bg-gray-200'}`}>
           <div className="container mx-auto px-4 text-center">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -434,7 +408,7 @@ export default function LandingPage() {
         </section>
       </main>
 
-      <footer className="bg-gray-900 py-12">
+      <footer className={`${isDarkMode ? 'bg-gray-900' : 'bg-gray-300'} py-12`}>
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-sm mb-4 md:mb-0">© Copyright 2024. All Rights Reserved by ZVortex</p>
