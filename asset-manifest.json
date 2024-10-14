@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Zvortex/static/css/main.3caf9125.css",
-    "main.js": "/Zvortex/static/js/main.cbeb1db1.js",
+    "main.css": "/Zvortex/static/css/main.fc99efc4.css",
+    "main.js": "/Zvortex/static/js/main.5366c933.js",
     "static/js/453.c06808dc.chunk.js": "/Zvortex/static/js/453.c06808dc.chunk.js",
     "index.html": "/Zvortex/index.html",
-    "main.3caf9125.css.map": "/Zvortex/static/css/main.3caf9125.css.map",
-    "main.cbeb1db1.js.map": "/Zvortex/static/js/main.cbeb1db1.js.map",
+    "main.fc99efc4.css.map": "/Zvortex/static/css/main.fc99efc4.css.map",
+    "main.5366c933.js.map": "/Zvortex/static/js/main.5366c933.js.map",
     "453.c06808dc.chunk.js.map": "/Zvortex/static/js/453.c06808dc.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.3caf9125.css",
-    "static/js/main.cbeb1db1.js"
+    "static/css/main.fc99efc4.css",
+    "static/js/main.5366c933.js"
   ]
 }
