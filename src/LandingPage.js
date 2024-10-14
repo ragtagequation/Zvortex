@@ -99,9 +99,9 @@ export default function LandingPage() {
             <a href="#contact" className="hover:text-purple-400 transition-colors">Contact</a>
           </nav>
           <div className="hidden md:flex space-x-4">
-            <a href="login-page.html" className="px-4 py-2 rounded-md border border-purple-500 hover:bg-purple-500 transition-colors">
+            {/*<a href="login-page.html" className="px-4 py-2 rounded-md border border-purple-500 hover:bg-purple-500 transition-colors">
               Sign In
-            </a>
+            </a>*/}
             <a href="x.html" className="px-4 py-2 rounded-md bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 transition-colors">
               Request Demo
             </a>
@@ -122,9 +122,9 @@ export default function LandingPage() {
               <a href="#about" className="hover:text-purple-400 transition-colors">About Us</a>
               <a href="#pricing" className="hover:text-purple-400 transition-colors">Pricing</a>
               <a href="#contact" className="hover:text-purple-400 transition-colors">Contact</a>
-              <a href="login-page.html" className="px-4 py-2 rounded-md border border-purple-500 hover:bg-purple-500 transition-colors text-center">
+               {/* <a href="login-page.html" className="px-4 py-2 rounded-md border border-purple-500 hover:bg-purple-500 transition-colors text-center">
                 Sign In
-              </a>
+              </a>*/}
               <a href="x.html" className="px-4 py-2 rounded-md bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 transition-colors text-center">
                 Request Demo
               </a>
