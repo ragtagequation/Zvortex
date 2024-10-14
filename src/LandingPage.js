@@ -59,6 +59,25 @@ export default function LandingPage() {
     '/images/brand8.png',
   ]
 
+    const aboutSlides = [
+    {
+      title: "Our Mission",
+      content: "At ZVortex, our mission is to empower businesses with cutting-edge AI-driven marketing solutions. We strive to simplify complex marketing processes and drive exceptional results for our clients."
+    },
+    {
+      title: "Innovation at Core",
+      content: "We're constantly pushing the boundaries of what's possible in digital marketing. Our team of experts is dedicated to developing innovative features that keep our clients ahead of the curve."
+    },
+    {
+      title: "Customer Success",
+      content: "Your success is our success. We provide unparalleled support and guidance to ensure you get the most out of our platform. Our customer success team is always ready to assist you in achieving your marketing goals."
+    },
+    {
+      title: "Data-Driven Approach",
+      content: "We believe in the power of data. ZVortex's analytics tools provide deep insights into your marketing performance, allowing you to make informed decisions and optimize your strategies for maximum impact."
+    }
+  ]
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-white">
       <motion.header
@@ -161,13 +180,13 @@ export default function LandingPage() {
               className="rounded-lg overflow-hidden"
             >
               <SwiperSlide>
-                <img src="bg1.jpg" alt="ZVortex Dashboard" className="w-full h-[400px] object-cover" />
+                <img src="merchant.png" alt="ZVortex Dashboard" className="w-full h-[400px] object-cover" />
               </SwiperSlide>
               <SwiperSlide>
-                <img src="bg2.jpg" alt="Campaign Management" className="w-full h-[400px] object-cover" />
+                <img src="pic2.png" alt="Campaign Management" className="w-full h-[400px] object-cover" />
               </SwiperSlide>
               <SwiperSlide>
-                <img src="bg3.jpg" alt="Analytics Overview" className="w-full h-[400px] object-cover" />
+                <img src="pic3.png" alt="Analytics Overview" className="w-full h-[400px] object-cover" />
               </SwiperSlide>
             </Swiper>
           </div>
@@ -215,31 +234,98 @@ export default function LandingPage() {
         </section>
 
         
-      <section id="about" className="py-20 bg-gray-800 overflow-hidden">
+        <section id="about" className="py-20 bg-gray-800 overflow-hidden">
+  <div className="container mx-auto px-4">
+    <motion.h2
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="text-3xl md:text-4xl font-bold mb-12 text-center"
+    >
+      Empowering Over 100 Fast-Growing Businesses
+    </motion.h2>
+    <div className="relative mb-20">
+      <div className="flex space-x-12 animate-slide">
+        {brandLogos.map((logo, index) => (
+          <div key={index} className="flex-shrink-0">
+            <img
+              src={logo}
+              alt={`Brand${index + 1}`}
+              className="h-12 w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <section id="ai-marketing" className="py-20 bg-gray-900">
         <div className="container mx-auto px-4">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-bold mb-12 text-center"
+            className="text-3xl md:text-4xl font-bold mb-16 text-center"
           >
-            Empowering Over 100 Fast-Growing Businesses
+            AI-Powered Marketing Solutions
           </motion.h2>
-          <div className="relative">
-            <div className="flex space-x-12 animate-slide">
-              {brandLogos.map((logo, index) => (
-                <div key={index} className="flex-shrink-0">
-                  <img
-                    src={logo}
-                    alt={`Brand${index + 1}`}
-                    className="h-12 w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
-                  />
-                </div>
-              ))}
-            </div>
+          
+          <div className="grid md:grid-cols-2 gap-16">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="bg-gray-800 p-8 rounded-lg shadow-xl"
+            >
+              <h3 className="text-2xl font-semibold mb-4 text-purple-400">AI-Driven Campaign Optimization</h3>
+              <p className="text-gray-300 mb-6">
+                Harness the power of artificial intelligence to supercharge your marketing campaigns. Our AI algorithms analyze vast amounts of data to identify trends, predict customer behavior, and optimize your campaigns in real-time for maximum ROI.
+              </p>
+              <img src="AI.png" alt="AI Campaign Optimization" className="w-full rounded-lg shadow-md" />
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="bg-gray-800 p-8 rounded-lg shadow-xl"
+            >
+              <h3 className="text-2xl font-semibold mb-4 text-purple-400">Personalized Customer Experiences</h3>
+              <p className="text-gray-300 mb-6">
+                Deliver tailored marketing messages to each customer with our AI-powered personalization engine. Analyze customer data, behavior, and preferences to create hyper-targeted campaigns that resonate with your audience and drive conversions.
+              </p>
+              <img src="pic1.png" alt="Personalized Customer Experiences" className="w-full rounded-lg shadow-md" />
+            </motion.div>
           </div>
         </div>
       </section>
+
+    <motion.h3
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="text-2xl md:text-3xl font-bold mb-8 text-center"
+    >
+      Discover ZVortex
+    </motion.h3>
+
+    <Swiper
+      modules={[Navigation, Pagination, Autoplay]}
+      spaceBetween={30}
+      slidesPerView={1}
+      navigation
+      pagination={{ clickable: true }}
+      autoplay={{ delay: 5000 }}
+      className="bg-gray-700 rounded-lg overflow-hidden"
+    >
+      {aboutSlides.map((slide, index) => (
+        <SwiperSlide key={index} className="p-11">
+          <h4 className="text-xl font-semibold mb-4">{slide.title}</h4>
+          <p className="text-gray-300">{slide.content}</p>
+        </SwiperSlide>
+      ))}
+    </Swiper>
+  </div>
+</section>
 
         <section id="pricing" className="py-20">
           <div className="container mx-auto px-4">
