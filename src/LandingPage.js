@@ -35,38 +35,38 @@ export default function LandingPage() {
   }
 
   const brandLogos = [
-    '/images/brand1.jpg',
-    '/images/brand2.jpg',
-    '/images/brand3.jpg',
-    '/images/brand4.jpg',
-    '/images/brand5.jpg',
-    '/images/brand6.jpg',
-    '/images/brand7.jpg',
-    '/images/brand8.png',
-    '/images/brand1.jpg',
-    '/images/brand2.jpg',
-    '/images/brand3.jpg',
-    '/images/brand4.jpg',
-    '/images/brand5.jpg',
-    '/images/brand6.jpg',
-    '/images/brand7.jpg',
-    '/images/brand8.png',
-    '/images/brand1.jpg',
-    '/images/brand2.jpg',
-    '/images/brand3.jpg',
-    '/images/brand4.jpg',
-    '/images/brand5.jpg',
-    '/images/brand6.jpg',
-    '/images/brand7.jpg',
-    '/images/brand8.png',
-    '/images/brand1.jpg',
-    '/images/brand2.jpg',
-    '/images/brand3.jpg',
-    '/images/brand4.jpg',
-    '/images/brand5.jpg',
-    '/images/brand6.jpg',
-    '/images/brand7.jpg',
-    '/images/brand8.png',
+    '/image/brand1.jpg',
+    '/image/brand2.jpg',
+    '/image/brand3.jpg',
+    '/image/brand4.jpg',
+    '/image/brand5.jpg',
+    '/image/brand6.jpg',
+    '/image/brand7.jpg',
+    '/image/brand8.png',
+    '/image/brand1.jpg',
+    '/image/brand2.jpg',
+    '/image/brand3.jpg',
+    '/image/brand4.jpg',
+    '/image/brand5.jpg',
+    '/image/brand6.jpg',
+    '/image/brand7.jpg',
+    '/image/brand8.png',
+    '/image/brand1.jpg',
+    '/image/brand2.jpg',
+    '/image/brand3.jpg',
+    '/image/brand4.jpg',
+    '/image/brand5.jpg',
+    '/image/brand6.jpg',
+    '/image/brand7.jpg',
+    '/image/brand8.png',
+    '/image/brand1.jpg',
+    '/image/brand2.jpg',
+    '/image/brand3.jpg',
+    '/image/brand4.jpg',
+    '/image/brand5.jpg',
+    '/image/brand6.jpg',
+    '/image/brand7.jpg',
+    '/image/brand8.png',
   ]
 
     const aboutSlides = [
@@ -105,7 +105,7 @@ export default function LandingPage() {
           <nav className="hidden md:flex space-x-8">
             <a href="#services" className="hover:text-purple-400 transition-colors">Services</a>
             <a href="#about" className="hover:text-purple-400 transition-colors">About Us</a>
-            <a href="pricing-page.html" className="hover:text-purple-400 transition-colors">Pricing</a>
+            <a href="#pricing" className="hover:text-purple-400 transition-colors">Pricing</a>
             <a href="#contact" className="hover:text-purple-400 transition-colors">Contact</a>
           </nav>
           <div className="hidden md:flex space-x-4 items-center">
@@ -244,7 +244,7 @@ export default function LandingPage() {
         </section>
 
         
-        <section id="about" className={`py-20 ${isDarkMode ? 'bg-gray-800' : 'bg-gray-200'} overflow-hidden`}>
+  <section id="about" className={`py-20 ${isDarkMode ? 'bg-gray-800' : 'bg-gray-200'} overflow-hidden`}>
   <div className="container mx-auto px-4">
     <motion.h2
       initial={{ opacity: 0, y: 20 }}
@@ -296,7 +296,35 @@ export default function LandingPage() {
   </div>
 </section>
 
-        
+<div className="container mx-auto px-4 mt-16">
+          <div className="grid md:grid-cols-2 gap-8">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className={`${isDarkMode ? 'bg-gray-700' : 'bg-white'} p-6 rounded-lg shadow-lg`}
+            >
+              <h3 className="text-2xl font-semibold mb-4">AI-Driven Campaign Optimization</h3>
+              <p className="mb-4">
+                Harness the power of artificial intelligence to supercharge your marketing campaigns. Our AI algorithms analyze vast amounts of data to identify trends, predict customer behavior, and optimize your campaigns in real-time for maximum ROI.
+              </p>
+              <img src="/image/ai-optimization.jpg" alt="AI-Driven Optimization" className="w-full h-48 object-cover rounded-lg" />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className={`${isDarkMode ? 'bg-gray-700' : 'bg-white'} p-6 rounded-lg shadow-lg`}
+            >
+              <h3 className="text-2xl font-semibold mb-4">Personalized Customer Experiences</h3>
+              <p className="mb-4">
+                Deliver tailored marketing messages to each customer with our AI-powered personalization engine. Analyze customer data, behavior, and preferences to create hyper-targeted campaigns that resonate with your audience and drive conversions.
+              </p>
+              <img src="/image/personalized-experience.jpg" alt="Personalized Customer Experiences" className="w-full h-48 object-cover rounded-lg" />
+            </motion.div>
+          </div>
+        </div>
+
 <section id="pricing" className="py-20">
   <div className="container mx-auto px-4">
     <motion.h2
