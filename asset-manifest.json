@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/Zvortex/static/css/main.18ede978.css",
-    "main.js": "/Zvortex/static/js/main.7713765c.js",
+    "main.css": "/Zvortex/static/css/main.2d52ce0b.css",
+    "main.js": "/Zvortex/static/js/main.b16a1498.js",
     "static/js/453.c06808dc.chunk.js": "/Zvortex/static/js/453.c06808dc.chunk.js",
     "static/media/brand2.jpg": "/Zvortex/static/media/brand2.e64c31737db3b69d88c8.jpg",
     "index.html": "/Zvortex/index.html",
-    "main.18ede978.css.map": "/Zvortex/static/css/main.18ede978.css.map",
-    "main.7713765c.js.map": "/Zvortex/static/js/main.7713765c.js.map",
+    "main.2d52ce0b.css.map": "/Zvortex/static/css/main.2d52ce0b.css.map",
+    "main.b16a1498.js.map": "/Zvortex/static/js/main.b16a1498.js.map",
     "453.c06808dc.chunk.js.map": "/Zvortex/static/js/453.c06808dc.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.18ede978.css",
-    "static/js/main.7713765c.js"
+    "static/css/main.2d52ce0b.css",
+    "static/js/main.b16a1498.js"
   ]
 }
