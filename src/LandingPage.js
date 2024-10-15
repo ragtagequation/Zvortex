@@ -78,28 +78,36 @@ export default function LandingPage() {
         animate="visible"
         variants={navVariants}
       >
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <a href="#" className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
-            ZVortex
-          </a>
-          <nav className="hidden md:flex space-x-8">
-            <a href="#services" className="hover:text-purple-400 transition-colors">Services</a>
-            <a href="#about" className="hover:text-purple-400 transition-colors">About Us</a>
-            <a href="#pricing" className="hover:text-purple-400 transition-colors">Pricing</a>
-            <a href="#contact" className="hover:text-purple-400 transition-colors">Contact</a>
-          </nav>
-          <div className="hidden md:flex space-x-4 items-center">
-            <button onClick={toggleTheme} className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 transition-colors">
-              {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
-            </button>
-            <a href="x.html" className="px-4 py-2 rounded-md bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 transition-colors text-white">
-              Request Demo
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex justify-between items-center">
+            {/* Logo */}
+            <a href="#" className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+              ZVortex
             </a>
+            
+            {/* Centered Navigation */}
+            <nav className="hidden md:flex space-x-8 absolute left-1/2 transform -translate-x-1/2">
+              <a href="#services" className="hover:text-purple-400 transition-colors">Services</a>
+              <a href="#about" className="hover:text-purple-400 transition-colors">About Us</a>
+              <a href="#pricing" className="hover:text-purple-400 transition-colors">Pricing</a>
+              <a href="#contact" className="hover:text-purple-400 transition-colors">Contact</a>
+            </nav>
+            
+            {/* Right-aligned items */}
+            <div className="flex items-center space-x-4">
+              <button onClick={toggleTheme} className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 transition-colors">
+                {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+              </button>
+              <a href="x.html" className="hidden md:inline-block px-4 py-2 rounded-md bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 transition-colors text-white">
+                Request Demo
+              </a>
+              <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                {isMenuOpen ? <X /> : <Menu />}
+              </button>
+            </div>
           </div>
-          <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            {isMenuOpen ? <X /> : <Menu />}
-          </button>
         </div>
+
         {isMenuOpen && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -288,7 +296,7 @@ export default function LandingPage() {
               <p className="mb-4">
                 Harness the power of artificial intelligence to supercharge your marketing campaigns. Our AI algorithms analyze vast amounts of data to identify trends, predict customer behavior, and optimize your campaigns in real-time for maximum ROI.
               </p>
-              <img src="/image/ai-optimization.jpg" alt="AI-Driven Optimization" className="w-full h-48 object-cover rounded-lg" />
+              <img src="\public\Pic1.png" alt="AI-Driven Optimization" className="w-full h-48 object-cover rounded-lg" />
             </motion.div>
             <motion.div
               initial={{ opacity: 0, x: 50 }}
@@ -300,7 +308,7 @@ export default function LandingPage() {
               <p className="mb-4">
                 Deliver tailored marketing messages to each customer with our AI-powered personalization engine. Analyze customer data, behavior, and preferences to create hyper-targeted campaigns that resonate with your audience and drive conversions.
               </p>
-              <img src="/image/personalized-experience.jpg" alt="Personalized Customer Experiences" className="w-full h-48 object-cover rounded-lg" />
+              <img src="/pic2.png" alt="Campaign Management" className="w-full h-48 object-cover rounded-lg" />
             </motion.div>
           </div>
         </div>
@@ -405,8 +413,7 @@ export default function LandingPage() {
               viewport={{ once: true }}
               transition={{ delay: 0.4 }}
             >
-              <a
-                href="x.html"
+              <a href="x.html"
                 className="inline-block px-8 py-3 rounded-md bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 transition-colors text-lg font-semibold"
               >
                 Request a Demo
