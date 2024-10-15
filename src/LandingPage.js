@@ -8,6 +8,14 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import './globals.css'
+import brand1 from './image/brand1.jpg';
+import brand2 from './image/brand2.jpg';
+import brand3 from './image/brand3.jpg';
+import brand4 from './image/brand4.jpg';
+import brand5 from './image/brand5.jpg';
+import brand6 from './image/brand6.jpg';
+import brand7 from './image/brand7.jpg';
+import brand8 from './image/brand8.png';
 
 export default function LandingPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -35,39 +43,11 @@ export default function LandingPage() {
   }
 
   const brandLogos = [
-    '/image/brand1.jpg',
-    '/image/brand2.jpg',
-    '/image/brand3.jpg',
-    '/image/brand4.jpg',
-    '/image/brand5.jpg',
-    '/image/brand6.jpg',
-    '/image/brand7.jpg',
-    '/image/brand8.png',
-    '/image/brand1.jpg',
-    '/image/brand2.jpg',
-    '/image/brand3.jpg',
-    '/image/brand4.jpg',
-    '/image/brand5.jpg',
-    '/image/brand6.jpg',
-    '/image/brand7.jpg',
-    '/image/brand8.png',
-    '/image/brand1.jpg',
-    '/image/brand2.jpg',
-    '/image/brand3.jpg',
-    '/image/brand4.jpg',
-    '/image/brand5.jpg',
-    '/image/brand6.jpg',
-    '/image/brand7.jpg',
-    '/image/brand8.png',
-    '/image/brand1.jpg',
-    '/image/brand2.jpg',
-    '/image/brand3.jpg',
-    '/image/brand4.jpg',
-    '/image/brand5.jpg',
-    '/image/brand6.jpg',
-    '/image/brand7.jpg',
-    '/image/brand8.png',
-  ]
+    brand1, brand2, brand3, brand4,
+    brand5, brand6, brand7, brand8,
+    brand1, brand2, brand3, brand4,
+    brand5, brand6, brand7, brand8,
+  ];
 
     const aboutSlides = [
     {
