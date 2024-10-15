@@ -120,9 +120,6 @@ export default function LandingPage() {
               <a href="#about" className="hover:text-purple-400 transition-colors">About Us</a>
               <a href="#pricing" className="hover:text-purple-400 transition-colors">Pricing</a>
               <a href="#contact" className="hover:text-purple-400 transition-colors">Contact</a>
-              <button onClick={toggleTheme} className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 transition-colors self-start">
-                {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
-              </button>
               <a href="x.html" className="px-4 py-2 rounded-md bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 transition-colors text-white text-center">
                 Request Demo
               </a>
