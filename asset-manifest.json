@@ -1,16 +1,21 @@
 {
   "files": {
-    "main.css": "/Zvortex/static/css/main.b321f94b.css",
-    "main.js": "/Zvortex/static/js/main.b5334549.js",
+    "main.css": "/Zvortex/static/css/main.223cf941.css",
+    "main.js": "/Zvortex/static/js/main.8b23b0d3.js",
     "static/js/453.c06808dc.chunk.js": "/Zvortex/static/js/453.c06808dc.chunk.js",
+    "static/media/merchant.png": "/Zvortex/static/media/merchant.c0cbb6758e8abb14add2.png",
+    "static/media/2.svg": "/Zvortex/static/media/2.663ca8c0265542a2f63e0d7cbcb4e557.svg",
+    "static/media/pic2.png": "/Zvortex/static/media/pic2.745b56d089aa274dd8ae.png",
+    "static/media/1.svg": "/Zvortex/static/media/1.c9a3b475fc417c7ef26467c6f1d85d52.svg",
+    "static/media/graphs.svg": "/Zvortex/static/media/graphs.ed4d92eae7c2ad91f6c0aff2e68acd19.svg",
     "static/media/brand2.jpg": "/Zvortex/static/media/brand2.e64c31737db3b69d88c8.jpg",
     "index.html": "/Zvortex/index.html",
-    "main.b321f94b.css.map": "/Zvortex/static/css/main.b321f94b.css.map",
-    "main.b5334549.js.map": "/Zvortex/static/js/main.b5334549.js.map",
+    "main.223cf941.css.map": "/Zvortex/static/css/main.223cf941.css.map",
+    "main.8b23b0d3.js.map": "/Zvortex/static/js/main.8b23b0d3.js.map",
     "453.c06808dc.chunk.js.map": "/Zvortex/static/js/453.c06808dc.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b321f94b.css",
-    "static/js/main.b5334549.js"
+    "static/css/main.223cf941.css",
+    "static/js/main.8b23b0d3.js"
   ]
 }
