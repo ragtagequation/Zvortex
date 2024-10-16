@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef} from 'react'
 import { motion } from 'framer-motion'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'
@@ -16,6 +16,173 @@ import brand5 from './image/brand5.jpg';
 import brand6 from './image/brand6.jpg';
 import brand7 from './image/brand7.jpg';
 import brand8 from './image/brand8.png';
+import pic2 from './image/pic2.png';
+import merchant from './image/merchant.png';
+import graph from './image/graphs.svg';
+import text from './image/1.svg';
+import graph2 from './image/2.svg';
+
+const ImageGallery = () => {
+  const [visibleImages, setVisibleImages] = useState([]);
+  const galleryRef = useRef(null);
+
+  const images = [
+    pic2, text
+  ];
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVisibleImages((prev) => [...new Set([...prev, entry.target.dataset.index])]);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const galleryItems = galleryRef.current.children;
+    for (let item of galleryItems) {
+      observer.observe(item);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div className="mx-auto px-4 py-9">
+      <div 
+        ref={galleryRef} 
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-20"
+      >
+        {images.map((src, index) => (
+          <motion.div 
+            key={index} 
+            data-index={index}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: visibleImages.includes(index.toString()) ? 1 : 0 }}
+            transition={{ duration: 5 }}
+          >
+            <img 
+              src={src} width={700} height={250}
+              alt={`Gallery image ${index + 1}`} 
+              className="object-cover rounded-lg"
+            />
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const ImageGallery2 = () => {
+  const [visibleImages, setVisibleImages] = useState([]);
+  const galleryRef = useRef(null);
+
+  const images = [
+    graph2
+  ];
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVisibleImages((prev) => [...new Set([...prev, entry.target.dataset.index])]);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const galleryItems = galleryRef.current.children;
+    for (let item of galleryItems) {
+      observer.observe(item);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div className="mx-auto px-1 py-1">
+      <div 
+        ref={galleryRef} 
+        className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 gap-1"
+      >
+        {images.map((src, index) => (
+          <motion.div 
+            key={index} 
+            data-index={index}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: visibleImages.includes(index.toString()) ? 1 : 0 }}
+            transition={{ duration: 5 }}
+          >
+            <img 
+              src={src} 
+              alt={`Gallery image ${index + 1}`} 
+              className="w-full h-full object-cover rounded-lg"
+            />
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const ImageGallery3 = () => {
+  const [visibleImages, setVisibleImages] = useState([]);
+  const galleryRef = useRef(null);
+
+  const images = [
+    graph, text
+  ];
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVisibleImages((prev) => [...new Set([...prev, entry.target.dataset.index])]);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    const galleryItems = galleryRef.current.children;
+    for (let item of galleryItems) {
+      observer.observe(item);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div className="mx-auto px-4 py-9">
+      <div 
+        ref={galleryRef} 
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-20"
+      >
+        {images.map((src, index) => (
+          <motion.div 
+            key={index} 
+            data-index={index}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: visibleImages.includes(index.toString()) ? 1 : 0 }}
+            transition={{ duration: 2 }}
+          >
+            <img 
+              src={src} width={700} height={250} 
+              alt={`Gallery image ${index + 1}`} 
+              className="center object-cover rounded-lg"
+            />
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 export default function LandingPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -69,9 +236,9 @@ export default function LandingPage() {
   ]
 
   return (
-    <div className={`min-h-screen ${isDarkMode ? 'bg-gradient-to-b from-gray-900 to-gray-800' : 'bg-gradient-to-b from-gray-100 to-white'} text-gray-900 dark:text-white transition-colors duration-300`}>
+    <div className={`min-h-screen ${isDarkMode ? 'bg-gradient-to-b from-gray-900 to-gray-800' : 'bg-gradient-to-b from-gray-100 to-white'} text-gray-900 dark:text-white transition-colors duration-1`}>
       <motion.header
-        className={`fixed w-full z-50 transition-colors duration-300 ${
+        className={`fixed w-full z-50 transition-colors duration-1 ${
           scrollY > 50 ? (isDarkMode ? 'bg-gray-900/90' : 'bg-white/90') + ' backdrop-blur-md' : ''
         }`}
         initial="hidden"
@@ -163,28 +330,14 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <section id="image-carousel" className={`py-20 ${isDarkMode ? 'bg-gray-800' : 'bg-gray-200'}`}>
-          <div className="container mx-auto px-4">
-            <Swiper
-              modules={[Navigation, Pagination, Autoplay]}
-              spaceBetween={30}
-              slidesPerView={1}
-              navigation
-              pagination={{ clickable: true }}
-              autoplay={{ delay: 5000 }}
-              className="rounded-lg overflow-hidden"
-            >
-              <SwiperSlide>
-                <img src="merchant.png" alt="ZVortex Dashboard" className="w-full h-[400px] object-cover" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src="pic2.png" alt="Campaign Management" className="w-full h-[400px] object-cover" />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img src="pic3.png" alt="Analytics Overview" className="w-full h-[400px] object-cover" />
-              </SwiperSlide>
-            </Swiper>
-          </div>
+        <section className="py-20">
+  <div className="container mx-auto px-4">
+    <ImageGallery3 />
+  </div>
+</section>
+        
+        <section id="gallery" className={`py-20 ${isDarkMode ? 'bg-gray-850' : 'bg-grey-100'}`}>
+          <ImageGallery />
         </section>
 
         <section id="services" className="py-20">
@@ -226,9 +379,11 @@ export default function LandingPage() {
               ))}
             </div>
           </div>
+          <section id="gallery" className={`py-20 ${isDarkMode ? 'bg-gray-850' : 'bg-grey-100'}`}>
+          <ImageGallery2 />
+          </section>
         </section>
 
-        
   <section id="about" className={`py-20 ${isDarkMode ? 'bg-gray-800' : 'bg-gray-200'} overflow-hidden`}>
   <div className="container mx-auto px-4">
     <motion.h2
@@ -293,7 +448,7 @@ export default function LandingPage() {
               <p className="mb-4">
                 Harness the power of artificial intelligence to supercharge your marketing campaigns. Our AI algorithms analyze vast amounts of data to identify trends, predict customer behavior, and optimize your campaigns in real-time for maximum ROI.
               </p>
-              <img src="\public\Pic1.png" alt="AI-Driven Optimization" className="w-full h-48 object-cover rounded-lg" />
+              <img src="\image\Pic1.png" alt="AI-Driven Optimization" className="w-full h-48 object-cover rounded-lg" />
             </motion.div>
             <motion.div
               initial={{ opacity: 0, x: 50 }}
@@ -305,7 +460,9 @@ export default function LandingPage() {
               <p className="mb-4">
                 Deliver tailored marketing messages to each customer with our AI-powered personalization engine. Analyze customer data, behavior, and preferences to create hyper-targeted campaigns that resonate with your audience and drive conversions.
               </p>
-              <img src="/pic2.png" alt="Campaign Management" className="w-full h-48 object-cover rounded-lg" />
+              <section id="gallery" className={`py-20 ${isDarkMode ? 'bg-gray-850' : 'bg-grey-100'}`}>
+                <ImageGallery2 />
+              </section>
             </motion.div>
           </div>
         </div>
@@ -327,6 +484,7 @@ export default function LandingPage() {
           price: "$99/month",
           features: ["Up to 5 campaigns", "Basic analytics", "Email support"],
           cta: "Get Started",
+          bluehighlight: true,
           highlighted: false
         },
         {
@@ -341,6 +499,7 @@ export default function LandingPage() {
           price: "Custom",
           features: ["Custom solutions", "Dedicated account manager", "On-site training", "API access"],
           cta: "Contact Sales",
+          bluehighlight: true,
           highlighted: false
         }
       ].map((plan, index) => (
@@ -354,6 +513,8 @@ export default function LandingPage() {
             isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'
           } p-6 rounded-lg shadow-lg ${
             plan.highlighted ? 'ring-2 ring-purple-500 scale-105' : ''
+          } ${ 
+            plan.bluehighlight ? 'ring-2 ring-purple-300 scale-105' : ''
           } transition-all duration-300`}
         >
           <h3 className="text-xl font-semibold mb-4">{plan.name}</h3>
