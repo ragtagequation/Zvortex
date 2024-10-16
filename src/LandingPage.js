@@ -449,7 +449,7 @@ export default function LandingPage() {
               <p className="mb-4">
                 Harness the power of artificial intelligence to supercharge your marketing campaigns. Our AI algorithms analyze vast amounts of data to identify trends, predict customer behavior, and optimize your campaigns in real-time for maximum ROI.
               </p>
-              <img src="\image\Pic1.png" alt="AI-Driven Optimization" className="w-full h-48 object-cover rounded-lg" />
+              <img src="\bg3.jpg" alt="AI-Driven Optimization" className="w-full h-48 object-cover rounded-lg" />
             </motion.div>
             <motion.div
               initial={{ opacity: 0, x: 50 }}
