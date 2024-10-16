@@ -439,7 +439,7 @@ export default function LandingPage() {
 <div className="container mx-auto px-4 mt-16">
           <div className="grid md:grid-cols-2 gap-8">
             <motion.div
-              initial={{ opacity: 0, x: -500 }}
+              initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.5 }}
@@ -452,7 +452,7 @@ export default function LandingPage() {
               <img src="\image\Pic1.png" alt="AI-Driven Optimization" className="w-full h-48 object-cover rounded-lg" />
             </motion.div>
             <motion.div
-              initial={{ opacity: 0, x: 500 }}
+              initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 1.0 }}
