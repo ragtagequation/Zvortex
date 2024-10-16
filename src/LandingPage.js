@@ -62,7 +62,7 @@ const ImageGallery = () => {
             data-index={index}
             initial={{ opacity: 0 }}
             animate={{ opacity: visibleImages.includes(index.toString()) ? 1 : 0 }}
-            transition={{ duration: 5 }}
+            transition={{ duration: 2 }}
           >
             <img 
               src={src} width={700} height={250}
@@ -116,7 +116,7 @@ const ImageGallery2 = () => {
             data-index={index}
             initial={{ opacity: 0 }}
             animate={{ opacity: visibleImages.includes(index.toString()) ? 1 : 0 }}
-            transition={{ duration: 5 }}
+            transition={{ duration: 2 }}
           >
             <img 
               src={src} 
@@ -439,9 +439,10 @@ export default function LandingPage() {
 <div className="container mx-auto px-4 mt-16">
           <div className="grid md:grid-cols-2 gap-8">
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
+              initial={{ opacity: 0, x: -500 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
+              transition={{ delay: 0.5 }}
               className={`${isDarkMode ? 'bg-gray-700' : 'bg-white'} p-6 rounded-lg shadow-lg`}
             >
               <h3 className="text-2xl font-semibold mb-4">AI-Driven Campaign Optimization</h3>
@@ -451,9 +452,10 @@ export default function LandingPage() {
               <img src="\image\Pic1.png" alt="AI-Driven Optimization" className="w-full h-48 object-cover rounded-lg" />
             </motion.div>
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
+              initial={{ opacity: 0, x: 500 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
+              transition={{ delay: 1.0 }}
               className={`${isDarkMode ? 'bg-gray-700' : 'bg-white'} p-6 rounded-lg shadow-lg`}
             >
               <h3 className="text-2xl font-semibold mb-4">Personalized Customer Experiences</h3>
