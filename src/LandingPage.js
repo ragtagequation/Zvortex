@@ -8,6 +8,7 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import './globals.css'
+import MR from './merchant-dashboard.tsx';
 import brand1 from './image/brand1.jpg';
 import brand2 from './image/brand2.jpg';
 import brand3 from './image/brand3.jpg';
@@ -260,12 +261,12 @@ export default function LandingPage() {
               <a href="#contact" className="hover:text-purple-400 transition-colors">Contact</a>
             </nav>
             
-            {/* Right-aligned items */}
+            {/* Right-aligned ites */}
             <div className="flex items-center space-x-4">
               <button onClick={toggleTheme} className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 transition-colors">
                 {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
               </button>
-              <a href="x.html" className="hidden md:inline-block px-4 py-2 rounded-md bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 transition-colors text-white">
+              <a href={MR} className="hidden md:inline-block px-4 py-2 rounded-md bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 transition-colors text-white">
                 Request Demo
               </a>
               <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -449,7 +450,7 @@ export default function LandingPage() {
               <p className="mb-4">
                 Harness the power of artificial intelligence to supercharge your marketing campaigns. Our AI algorithms analyze vast amounts of data to identify trends, predict customer behavior, and optimize your campaigns in real-time for maximum ROI.
               </p>
-              <img src="\bg3.jpg" alt="AI-Driven Optimization" className="w-full h-48 object-cover rounded-lg" />
+              <img src={text} alt="AI-Driven Optimization" className="w-full h-48 object-cover rounded-lg" />
             </motion.div>
             <motion.div
               initial={{ opacity: 0, x: 50 }}
