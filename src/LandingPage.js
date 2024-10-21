@@ -21,9 +21,9 @@ import merchant from './image/merchant.png';
 import graph from './image/graphs.svg';
 import text from './image/1.svg';
 import graph2 from './image/2.svg';
-import testimonial1 from './image/testimonial1.jpg'
-import testimonial2 from './image/testimonial2.jpg'
-import testimonial3 from './image/testimonial3.jpg'
+import analytics from './image/analytics.jpg';
+import apis from './image/apis.jpg';
+import md from './image/md.jpg';
 
 const ImageGallery = () => {
   const [visibleImages, setVisibleImages] = useState([]);
@@ -236,27 +236,6 @@ export default function LandingPage() {
     {
       title: "Data-Driven Approach",
       content: "We believe in the power of data. ZVortex's analytics tools provide deep insights into your marketing performance, allowing you to make informed decisions and optimize your strategies for maximum impact."
-    }
-  ]
-
-  const testimonials = [
-    {
-      name: "John Doe",
-      position: "Marketing Director, TechCorp",
-      image: testimonial1,
-      quote: "ZVortex has revolutionized our marketing efforts. We've seen a 200% increase in ROI since implementing their AI-driven solutions."
-    },
-    {
-      name: "Jane Smith",
-      position: "CEO, GrowthStartup",
-      image: testimonial2,
-      quote: "The level of automation and insights provided by ZVortex is unparalleled. It's like having a marketing genius working 24/7."
-    },
-    {
-      name: "Mike Johnson",
-      position: "CMO, E-commerce Giant",
-      image: testimonial3,
-      quote: "ZVortex's cross-platform capabilities have streamlined our operations and significantly boosted our conversion rates."
     }
   ]
 
@@ -750,10 +729,7 @@ export default function LandingPage() {
                 variants={fadeInUp}
                 className={`${isDarkMode ? 'bg-gray-700' : 'bg-white'} p-6 rounded-lg shadow-lg`}
               >
-                {/* Placeholder for an analytics dashboard image */}
-                <div className="bg-gray-300 h-64 rounded-lg flex items-center justify-center">
-                  <span className="text-gray-600">Analytics Dashboard Preview</span>
-                </div>
+                <img src={analytics} alt="Analytics Dashboard Preview" className="w-full h-64 object-cover rounded-lg" />
               </motion.div>
             </motion.div>
           </div>
@@ -771,10 +747,7 @@ export default function LandingPage() {
             </motion.h2>
             <div className="grid md:grid-cols-2 gap-8">
               <div className={`${isDarkMode ? 'bg-gray-800' : 'bg-gray-100'} p-6 rounded-lg shadow-lg`}>
-                {/* Placeholder for a cross-platform campaign management image */}
-                <div className="bg-gray-300 h-64 rounded-lg flex items-center justify-center">
-                  <span className="text-gray-600">Campaign Management Interface</span>
-                </div>
+                <img src={apis} alt="Analytics Dashboard Preview" className="w-full h-64 object-cover rounded-lg" />
               </div>
               <div>
                 <h3 className="text-2xl font-semibold mb-4">Seamless Integration Across Channels</h3>
@@ -812,10 +785,7 @@ export default function LandingPage() {
                 </ul>
               </div>
               <div className={`${isDarkMode ? 'bg-gray-700' : 'bg-white'} p-6 rounded-lg shadow-lg`}>
-                {/* Placeholder for a technology stack diagram */}
-                <div className="bg-gray-300 h-64 rounded-lg flex items-center justify-center">
-                  <span className="text-gray-600">Technology Stack Diagram</span>
-                </div>
+              <img src={md} alt="Analytics Dashboard Preview" className="w-full h-64 object-cover rounded-lg" />
               </div>
             </div>
           </div>
