@@ -1,14 +1,13 @@
-import { useState, useEffect, useRef} from 'react'
-import { motion } from 'framer-motion'
+import { useState, useEffect, useRef } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'
-import { ChevronDown, Menu, X, Sun, Moon } from 'lucide-react'
+import { ChevronDown, Menu, X, Sun, Moon, BarChart, Users, Zap, Shield, Award, Clock, Rocket, Target, Layers } from 'lucide-react'
 
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import './globals.css'
-import MR from './merchant-dashboard.tsx';
 import brand1 from './image/brand1.jpg';
 import brand2 from './image/brand2.jpg';
 import brand3 from './image/brand3.jpg';
@@ -22,6 +21,9 @@ import merchant from './image/merchant.png';
 import graph from './image/graphs.svg';
 import text from './image/1.svg';
 import graph2 from './image/2.svg';
+import testimonial1 from './image/testimonial1.jpg'
+import testimonial2 from './image/testimonial2.jpg'
+import testimonial3 from './image/testimonial3.jpg'
 
 const ImageGallery = () => {
   const [visibleImages, setVisibleImages] = useState([]);
@@ -189,6 +191,7 @@ export default function LandingPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrollY, setScrollY] = useState(0)
   const [isDarkMode, setIsDarkMode] = useState(true)
+  const [activeDropdown, setActiveDropdown] = useState(null)
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY)
@@ -236,6 +239,75 @@ export default function LandingPage() {
     }
   ]
 
+  const testimonials = [
+    {
+      name: "John Doe",
+      position: "Marketing Director, TechCorp",
+      image: testimonial1,
+      quote: "ZVortex has revolutionized our marketing efforts. We've seen a 200% increase in ROI since implementing their AI-driven solutions."
+    },
+    {
+      name: "Jane Smith",
+      position: "CEO, GrowthStartup",
+      image: testimonial2,
+      quote: "The level of automation and insights provided by ZVortex is unparalleled. It's like having a marketing genius working 24/7."
+    },
+    {
+      name: "Mike Johnson",
+      position: "CMO, E-commerce Giant",
+      image: testimonial3,
+      quote: "ZVortex's cross-platform capabilities have streamlined our operations and significantly boosted our conversion rates."
+    }
+  ]
+
+  const navItems = [
+    {
+      title: "Services",
+      dropdown: [
+        { title: "AI-Powered Analytics", href: "#ai-analytics" },
+        { title: "Cross-Platform Campaigns", href: "#cross-platform" },
+        { title: "Audience Segmentation", href: "#audience-segmentation" },
+        { title: "Automated Reporting", href: "#automated-reporting" },
+      ]
+    },
+    {
+      title: "About Us",
+      dropdown: [
+        { title: "Our Story", href: "#our-story" },
+        { title: "Team", href: "#team" },
+        { title: "Vision & Mission", href: "#vision-mission" },
+        { title: "Technology", href: "#technology" },
+      ]
+    },
+    {
+      title: "Resources",
+      dropdown: [
+        { title: "Blog", href: "#blog" },
+        { title: "Whitepapers", href: "#whitepapers" },
+        { title: "Case Studies", href: "#case-studies" },
+        { title: "FAQs", href: "#faqs" },
+      ]
+    },
+    {
+      title: "Contact",
+      href: "#contact"
+    }
+  ]
+
+  const fadeInUp = {
+    initial: { opacity: 0, y: 50 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true },
+    transition: { duration: 0.5 }
+  }
+
+  const staggerChildren = {
+    initial: { opacity: 0 },
+    whileInView: { opacity: 1 },
+    viewport: { once: true },
+    transition: { staggerChildren: 0.2 }
+  }
+
   return (
     <div className={`min-h-screen ${isDarkMode ? 'bg-gradient-to-b from-gray-900 to-gray-800' : 'bg-gradient-to-b from-gray-100 to-white'} text-gray-900 dark:text-white transition-colors duration-1`}>
       <motion.header
@@ -248,25 +320,52 @@ export default function LandingPage() {
       >
         <div className="container mx-auto px-4 py-4">
           <div className="flex justify-between items-center">
-            {/* Logo */}
             <a href="#" className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
               ZVortex
             </a>
             
-            {/* Centered Navigation */}
-            <nav className="hidden md:flex space-x-8 absolute left-1/2 transform -translate-x-1/2">
-              <a href="#services" className="hover:text-purple-400 transition-colors">Services</a>
-              <a href="#about" className="hover:text-purple-400 transition-colors">About Us</a>
-              <a href="#pricing" className="hover:text-purple-400 transition-colors">Pricing</a>
-              <a href="#contact" className="hover:text-purple-400 transition-colors">Contact</a>
+            <nav className="hidden md:flex space-x-8">
+              {navItems.map((item, index) => (
+                <div key={index} className="relative group"
+                     onMouseEnter={() => setActiveDropdown(item.title)}
+                     onMouseLeave={() => setActiveDropdown(null)}>
+                  <a href={item.href || '#'} className="hover:text-purple-400 transition-colors">
+                    {item.title}
+                  </a>
+                  {item.dropdown && (
+                    <AnimatePresence>
+                      {activeDropdown === item.title && (
+                        <motion.div
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          transition={{ duration: 0.2 }}
+                          className={`absolute left-0 mt-2 w-48 rounded-md shadow-lg ${isDarkMode ? 'bg-gray-800' : 'bg-white'} ring-1 ring-black ring-opacity-5`}
+                        >
+                          <div className="py-1">
+                            {item.dropdown.map((dropdownItem, dropdownIndex) => (
+                              <a
+                                key={dropdownIndex}
+                                href={dropdownItem.href}
+                                className={`block px-4 py-2 text-sm ${isDarkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'}`}
+                              >
+                                {dropdownItem.title}
+                              </a>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  )}
+                </div>
+              ))}
             </nav>
             
-            {/* Right-aligned ites */}
             <div className="flex items-center space-x-4">
               <button onClick={toggleTheme} className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 transition-colors">
                 {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
               </button>
-              <a href={MR} className="hidden md:inline-block px-4 py-2 rounded-md bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 transition-colors text-white">
+              <a href="x.html" className="hidden md:inline-block px-4 py-2 rounded-md bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 transition-colors text-white">
                 Request Demo
               </a>
               <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -284,10 +383,40 @@ export default function LandingPage() {
             className={`md:hidden ${isDarkMode ? 'bg-gray-800' : 'bg-gray-100'} py-4`}
           >
             <nav className="flex flex-col space-y-4 px-4">
-              <a href="#services" className="hover:text-purple-400 transition-colors">Services</a>
-              <a href="#about" className="hover:text-purple-400 transition-colors">About Us</a>
-              <a href="#pricing" className="hover:text-purple-400 transition-colors">Pricing</a>
-              <a href="#contact" className="hover:text-purple-400 transition-colors">Contact</a>
+              {navItems.map((item, index) => (
+                <div key={index} className="relative group"
+                     onMouseEnter={() => setActiveDropdown(item.title)}
+                     onMouseLeave={() => setActiveDropdown(null)}>
+                  <a href={item.href || '#'} className="hover:text-purple-400 transition-colors">
+                    {item.title}
+                  </a>
+                  {item.dropdown && (
+                    <AnimatePresence>
+                      {activeDropdown === item.title && (
+                        <motion.div
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          transition={{ duration: 0.2 }}
+                          className={`absolute left-0 mt-2 w-48 rounded-md shadow-lg ${isDarkMode ? 'bg-gray-800' : 'bg-white'} ring-1 ring-black ring-opacity-5`}
+                        >
+                          <div className="py-1">
+                            {item.dropdown.map((dropdownItem, dropdownIndex) => (
+                              <a
+                                key={dropdownIndex}
+                                href={dropdownItem.href}
+                                className={`block px-4 py-2 text-sm ${isDarkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'}`}
+                              >
+                                {dropdownItem.title}
+                              </a>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  )}
+                </div>
+              ))}
               <a href="x.html" className="px-4 py-2 rounded-md bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 transition-colors text-white text-center">
                 Request Demo
               </a>
@@ -331,27 +460,69 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <section className="py-20">
-  <div className="container mx-auto px-4">
-    <ImageGallery3 />
-  </div>
-</section>
-        
         <section id="gallery" className={`py-20 ${isDarkMode ? 'bg-gray-850' : 'bg-grey-100'}`}>
-          <ImageGallery />
+          <motion.div {...fadeInUp}>
+            <ImageGallery />
+          </motion.div>
+        </section>
+
+        <section className={`py-20 ${isDarkMode ? 'bg-gray-800' : 'bg-gray-100'}`}>
+          <div className="container mx-auto px-4">
+            <motion.h2
+              {...fadeInUp}
+              className="text-3xl md:text-4xl font-bold mb-12 text-center"
+            >
+              Why Choose ZVortex?
+            </motion.h2>
+            <motion.div
+              variants={staggerChildren}
+              initial="initial"
+              whileInView="whileInView"
+              viewport={{ once: true }}
+              className="grid md:grid-cols-3 gap-8"
+            >
+              {[
+                { icon: <BarChart className="w-12 h-12 mb-4 text-purple-500" />, title: "Data-Driven Insights", description: "Leverage advanced analytics to make informed decisions and optimize your campaigns in real-time." },
+                { icon: <Users className="w-12 h-12 mb-4 text-purple-500" />, title: "Audience Segmentation", description: "Target the right customers with precision using our AI-powered segmentation tools." },
+                { icon: <Zap className="w-12 h-12 mb-4 text-purple-500" />, title: "Lightning-Fast Automation", description: "Streamline your workflow with intelligent automation across all marketing channels." },
+                { icon: <Shield className="w-12 h-12 mb-4 text-purple-500" />, title: "Enterprise-Grade Security", description: "Rest easy knowing your data is protected with state-of-the-art security measures." },
+                { icon: <Award className="w-12 h-12 mb-4 text-purple-500" />, title: "Innovative Platform", description: "Stay ahead of the curve with our cutting-edge marketing technology." },
+                { icon: <Clock className="w-12 h-12 mb-4 text-purple-500" />, title: "24/7 Expert Support", description: "Our dedicated team is always available to ensure your success with ZVortex." },
+              ].map((feature, index) => (
+                <motion.div
+                  key={index}
+                  variants={fadeInUp}
+                  className={`${isDarkMode ? 'bg-gray-700' : 'bg-white'} p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow text-center`}
+                >
+                  {feature.icon}
+                  <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+                  <p>{feature.description}</p>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
         </section>
 
         <section id="services" className="py-20">
+          <section id="gallery" className={`py-20 ${isDarkMode ? 'bg-gray-850' : 'bg-grey-100'}`}>
+            <motion.div {...fadeInUp}>
+              <ImageGallery2 />
+            </motion.div>
+          </section>
           <div className="container mx-auto px-4">
             <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              {...fadeInUp}
               className="text-3xl md:text-4xl font-bold mb-12 text-center"
             >
               ZVortex Features
             </motion.h2>
-            <div className="grid md:grid-cols-3 gap-8">
+            <motion.div
+              variants={staggerChildren}
+              initial="initial"
+              whileInView="whileInView"
+              viewport={{ once: true }}
+              className="grid md:grid-cols-3 gap-8"
+            >
               {[
                 {
                   title: "Launch and Manage Cross-Platform Campaigns",
@@ -368,21 +539,15 @@ export default function LandingPage() {
               ].map((feature, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.2 }}
+                  variants={fadeInUp}
                   className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow`}
                 >
                   <h3 className="text-xl font-semibold mb-4">{feature.title}</h3>
                   <p>{feature.description}</p>
                 </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
-          <section id="gallery" className={`py-20 ${isDarkMode ? 'bg-gray-850' : 'bg-grey-100'}`}>
-          <ImageGallery2 />
-          </section>
         </section>
 
   <section id="about" className={`py-20 ${isDarkMode ? 'bg-gray-800' : 'bg-gray-200'} overflow-hidden`}>
@@ -408,32 +573,6 @@ export default function LandingPage() {
         ))}
       </div>
     </div>
-
-    <motion.h3
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      className="text-2xl md:text-3xl font-bold mb-8 text-center"
-    >
-      Discover ZVortex
-    </motion.h3>
-
-    <Swiper
-      modules={[Navigation, Pagination, Autoplay]}
-      spaceBetween={30}
-      slidesPerView={1}
-      navigation
-      pagination={{ clickable: true }}
-      autoplay={{ delay: 5000 }}
-      className={`${isDarkMode ? 'bg-gray-700' : 'bg-white'} rounded-lg overflow-hidden shadow-lg`}
-    >
-      {aboutSlides.map((slide, index) => (
-        <SwiperSlide key={index} className="p-11">
-          <h4 className={`text-xl font-semibold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>{slide.title}</h4>
-          <p className={isDarkMode ? 'text-gray-300' : 'text-gray-600'}>{slide.content}</p>
-        </SwiperSlide>
-      ))}
-    </Swiper>
   </div>
 </section>
 
@@ -473,14 +612,18 @@ export default function LandingPage() {
 <section id="pricing" className="py-20">
   <div className="container mx-auto px-4">
     <motion.h2
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+      {...fadeInUp}
       className="text-3xl md:text-4xl font-bold mb-12 text-center"
     >
       Pricing Plans
     </motion.h2>
-    <div className="grid md:grid-cols-3 gap-8">
+    <motion.div
+      variants={staggerChildren}
+      initial="initial"
+      whileInView="whileInView"
+      viewport={{ once: true }}
+      className="grid md:grid-cols-3 gap-8"
+    >
       {[
         {
           name: "Starter",
@@ -508,10 +651,7 @@ export default function LandingPage() {
       ].map((plan, index) => (
         <motion.div
           key={index}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: index * 0.2 }}
+          variants={fadeInUp}
           className={`${
             isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'
           } p-6 rounded-lg shadow-lg ${
@@ -544,11 +684,144 @@ export default function LandingPage() {
           </a>
         </motion.div>
       ))}
-    </div>
+    </motion.div>
   </div>
 </section>
 
-        <section id="contact" className={`py-20 ${isDarkMode ? 'bg-gray-800' : 'bg-gray-200'}`}>
+        <section className={`py-20 ${isDarkMode ? 'bg-gray-900' : 'bg-white'}`}>
+          <div className="container mx-auto px-4">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-3xl md:text-4xl font-bold mb-12 text-center"
+            >
+              Our Vision for Your Success
+            </motion.h2>
+            <div className="grid md:grid-cols-3 gap-8">
+              {[
+                { icon: <Rocket className="w-12 h-12 mb-4 text-purple-500" />, title: "Accelerate Growth", description: "Our AI-powered tools are designed to skyrocket your marketing performance and drive rapid business growth." },
+                { icon: <Target className="w-12 h-12 mb-4 text-purple-500" />, title: "Precision Targeting", description: "Reach your ideal customers with laser-focused accuracy, maximizing your marketing ROI." },
+                { icon: <Layers className="w-12 h-12 mb-4 text-purple-500" />, title: "Seamless Integration", description: "Effortlessly connect all your marketing channels for a unified, powerful strategy." },
+              ].map((feature, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className={`${isDarkMode ? 'bg-gray-800' : 'bg-gray-100'} p-6 rounded-lg shadow-lg text-center`}
+                >
+                  {feature.icon}
+                  <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+                  <p>{feature.description}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="ai-analytics" className={`py-20 ${isDarkMode ? 'bg-gray-800' : 'bg-gray-100'}`}>
+          <div className="container mx-auto px-4">
+            <motion.h2
+              {...fadeInUp}
+              className="text-3xl md:text-4xl font-bold mb-12 text-center"
+            >
+              AI-Powered Analytics
+            </motion.h2>
+            <motion.div
+              variants={staggerChildren}
+              initial="initial"
+              whileInView="whileInView"
+              viewport={{ once: true }}
+              className="grid md:grid-cols-2 gap-8"
+            >
+              <motion.div variants={fadeInUp}>
+                <h3 className="text-2xl font-semibold mb-4">Unlock the Power of Your Data</h3>
+                <p className="mb-4">ZVortex's AI-powered analytics engine processes vast amounts of data in real-time, providing you with actionable insights to drive your marketing strategy.</p>
+                <ul className="list-disc list-inside mb-4">
+                  <li>Real-time performance tracking</li>
+                  <li>Predictive analytics for campaign optimization</li>
+                  <li>Custom reporting dashboards</li>
+                  <li>Competitor analysis</li>
+                </ul>
+              </motion.div>
+              <motion.div
+                variants={fadeInUp}
+                className={`${isDarkMode ? 'bg-gray-700' : 'bg-white'} p-6 rounded-lg shadow-lg`}
+              >
+                {/* Placeholder for an analytics dashboard image */}
+                <div className="bg-gray-300 h-64 rounded-lg flex items-center justify-center">
+                  <span className="text-gray-600">Analytics Dashboard Preview</span>
+                </div>
+              </motion.div>
+            </motion.div>
+          </div>
+        </section>
+
+        <section id="cross-platform" className={`py-20 ${isDarkMode ? 'bg-gray-900' : 'bg-white'}`}>
+          <div className="container mx-auto px-4">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-3xl md:text-4xl font-bold mb-12 text-center"
+            >
+              Cross-Platform Campaigns
+            </motion.h2>
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className={`${isDarkMode ? 'bg-gray-800' : 'bg-gray-100'} p-6 rounded-lg shadow-lg`}>
+                {/* Placeholder for a cross-platform campaign management image */}
+                <div className="bg-gray-300 h-64 rounded-lg flex items-center justify-center">
+                  <span className="text-gray-600">Campaign Management Interface</span>
+                </div>
+              </div>
+              <div>
+                <h3 className="text-2xl font-semibold mb-4">Seamless Integration Across Channels</h3>
+                <p className="mb-4">ZVortex allows you to create, manage, and optimize campaigns across multiple platforms from a single, intuitive interface.</p>
+                <ul className="list-disc list-inside mb-4">
+                  <li>Unified campaign creation and management</li>
+                  <li>Automated cross-platform optimization</li>
+                  <li>Consistent messaging across channels</li>
+                  <li>Integrated performance tracking</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="technology" className={`py-20 ${isDarkMode ? 'bg-gray-800' : 'bg-gray-100'}`}>
+          <div className="container mx-auto px-4">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-3xl md:text-4xl font-bold mb-12 text-center"
+            >
+              Our Technology Stack
+            </motion.h2>
+            <div className="grid md:grid-cols-2 gap-8">
+              <div>
+                <h3 className="text-2xl font-semibold mb-4">Cutting-Edge AI and Machine Learning</h3>
+                <p className="mb-4">ZVortex is built on a foundation of advanced AI and machine learning algorithms, enabling powerful predictive analytics and automated optimization.</p>
+                <ul className="list-disc list-inside mb-4">
+                  <li>Natural Language Processing for content analysis</li>
+                  <li>Deep Learning for user behavior prediction</li>
+                  <li>Reinforcement Learning for campaign optimization</li>
+                  <li>Computer Vision for creative asset analysis</li>
+                </ul>
+              </div>
+              <div className={`${isDarkMode ? 'bg-gray-700' : 'bg-white'} p-6 rounded-lg shadow-lg`}>
+                {/* Placeholder for a technology stack diagram */}
+                <div className="bg-gray-300 h-64 rounded-lg flex items-center justify-center">
+                  <span className="text-gray-600">Technology Stack Diagram</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className={`py-20 ${isDarkMode ? 'bg-gray-900' : 'bg-white'}`}>
           <div className="container mx-auto px-4 text-center">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -556,7 +829,7 @@ export default function LandingPage() {
               viewport={{ once: true }}
               className="text-3xl md:text-4xl font-bold mb-6"
             >
-              Unlock Your Marketing Potential with ZVortex
+              Ready to Revolutionize Your Marketing?
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -565,20 +838,73 @@ export default function LandingPage() {
               transition={{ delay: 0.2 }}
               className="text-xl mb-8"
             >
-              Save Time and Effort with Seamless Cross-Platform Automations
+              Be among the first to experience the future of AI-powered marketing with ZVortex.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4 }}
             >
-              <a href="x.html"
-                className="inline-block px-8 py-3 rounded-md bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 transition-colors text-lg font-semibold"
+              <a
+                href="x.html"
+                className={`inline-block px-8 py-3 rounded-md ${
+                  isDarkMode 
+                    ? 'bg-purple-600 hover:bg-purple-700' 
+                    : 'bg-purple-500 hover:bg-purple-600'
+                } text-white transition-colors text-lg font-semibold`}
               >
-                Request a Demo
+                Join the Waitlist
               </a>
+            </motion.div>
+          </div>
+        </section>
+
+        <section className={`py-20 ${isDarkMode ? 'bg-gray-800' : 'bg-gray-100'}`}>
+          <div className="container mx-auto px-4 text-center">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-3xl md:text-4xl font-bold mb-6"
+            >
+              Stay Updated
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="text-xl mb-8"
+            >
+              Subscribe to our newsletter for the latest updates and early access opportunities.
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+              className="max-w-md mx-auto"
+            >
+              <form className="flex">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  className={`flex-grow px-4 py-2 rounded-l-md ${
+                    isDarkMode ? 'bg-gray-700 text-white' : 'bg-gray-100 text-gray-900'
+                  }`}
+                />
+                <button
+                  type="submit"
+                  className={`px-6 py-2 rounded-r-md ${
+                    isDarkMode 
+                      ? 'bg-purple-600 hover:bg-purple-700' 
+                      : 'bg-purple-500 hover:bg-purple-600'
+                  } text-white transition-colors font-semibold`}
+                >
+                  Subscribe
+                </button>
+              </form>
             </motion.div>
           </div>
         </section>
@@ -590,8 +916,8 @@ export default function LandingPage() {
             <p className="text-sm mb-4 md:mb-0">© Copyright 2024. All Rights Reserved by ZVortex</p>
             <nav className="flex space-x-4">
               <a href="#" className="text-sm hover:text-purple-400 transition-colors">Contact</a>
-              <a href="#" className="text-sm hover:text-purple-400 transition-colors">Terms & Conditions</a>
-              <a href="#" className="text-sm hover:text-purple-400 transition-colors">Privacy Policy</a>
+              <a href="/terms" className="text-sm hover:text-purple-400 transition-colors">Terms & Conditions</a>
+              <a href="/privacy" className="text-sm hover:text-purple-400 transition-colors">Privacy Policy</a>
             </nav>
           </div>
         </div>
