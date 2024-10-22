@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Autoplay } from 'swiper/modules'
 import { ChevronDown, Menu, X, Sun, Moon, BarChart, Users, Zap, Shield, Award, Clock, Rocket, Target, Layers } from 'lucide-react'
+import xjs from './X.js'
+import { Link } from 'react-router-dom'
 
 import 'swiper/css'
 import 'swiper/css/navigation'
@@ -19,7 +21,7 @@ import brand8 from './image/brand8.png';
 import pic2 from './image/pic2.png';
 import merchant from './image/merchant.png';
 import graph from './image/graphs.svg';
-import text from './image/1.svg';
+import text from './image/1.png';
 import graph2 from './image/2.svg';
 import analytics from './image/analytics.jpg';
 import apis from './image/apis.jpg';
@@ -30,7 +32,7 @@ const ImageGallery = () => {
   const galleryRef = useRef(null);
 
   const images = [
-    pic2, text
+    pic2
   ];
 
   useEffect(() => {
@@ -57,7 +59,7 @@ const ImageGallery = () => {
     <div className="mx-auto px-4 py-9">
       <div 
         ref={galleryRef} 
-        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-20"
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-5"
       >
         {images.map((src, index) => (
           <motion.div 
@@ -68,7 +70,7 @@ const ImageGallery = () => {
             transition={{ duration: 2 }}
           >
             <img 
-              src={src} width={700} height={250}
+              src={src} width={2000} height={1000}
               alt={`Gallery image ${index + 1}`} 
               className="object-cover rounded-lg"
             />
@@ -344,9 +346,9 @@ export default function LandingPage() {
               <button onClick={toggleTheme} className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 transition-colors">
                 {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
               </button>
-              <a href="x.html" className="hidden md:inline-block px-4 py-2 rounded-md bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 transition-colors text-white">
+              <Link to="/demo-request" className="hidden md:inline-block px-4 py-2 rounded-md bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 transition-colors text-white">
                 Request Demo
-              </a>
+              </Link>
               <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
                 {isMenuOpen ? <X /> : <Menu />}
               </button>
@@ -440,8 +442,10 @@ export default function LandingPage() {
         </section>
 
         <section id="gallery" className={`py-20 ${isDarkMode ? 'bg-gray-850' : 'bg-grey-100'}`}>
-          <motion.div {...fadeInUp}>
-            <ImageGallery />
+          <motion.div {...fadeInUp} className="container mx-auto flex flex-row items-stretch justify-center">
+            <div className="w-full h-[700px]">
+              <img src={text} alt="text" className="w-full h-full object-contain" />
+            </div>
           </motion.div>
         </section>
 

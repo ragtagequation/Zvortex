@@ -4,6 +4,7 @@ import LandingPage from './LandingPage';
 import TermsAndConditions from './TermsAndConditions';
 import PrivacyPolicy from './PrivacyPolicy';
 import './globals.css'
+import x from './X.js'
 
 function App() {
   return (

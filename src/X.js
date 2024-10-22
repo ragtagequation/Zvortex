@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>X - Flashy Animations</title>
-    <style>
+import React from 'react';
+
+const X = () => {
+  return (
+    <div>
+      <style jsx>{`
         body {
             margin: 0;
             padding: 0;
@@ -65,14 +64,15 @@
                 transform: translateY(0) rotate(360deg);
             }
         }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1 class="text">coming soon</h1>
+      `}</style>
+      <div className="container">
+        <h1 className="text">coming soon</h1>
+      </div>
+      <div className="shape"></div>
+      <div className="shape"></div>
+      <div className="shape"></div>
     </div>
-    <div class="shape"></div>
-    <div class="shape"></div>
-    <div class="shape"></div>
-</body>
-</html>
+  );
+};
+
+export default X;
