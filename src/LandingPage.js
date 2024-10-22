@@ -411,7 +411,7 @@ export default function LandingPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600"
+              className="text-3xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600"
             >
               Transforming Advertising with AI Automation
             </motion.h1>
@@ -419,7 +419,7 @@ export default function LandingPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="text-xl mb-8 max-w-2xl mx-auto"
+              className="text-lg md:text-xl mb-8 max-w-2xl mx-auto"
             >
               ZVortex provides a comprehensive set of tools to manage, automate, and analyze all your digital marketing efforts across multiple platforms from one intuitive dashboard.
             </motion.p>
@@ -427,7 +427,7 @@ export default function LandingPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
-              className="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-4"
+              className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4"
             >
               <a href="x.html" className="px-8 py-3 rounded-md bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 transition-colors text-lg font-semibold">
                 Request a Demo
@@ -529,18 +529,19 @@ export default function LandingPage() {
           </div>
         </section>
 
-  <section id="about" className={`py-20 ${isDarkMode ? 'bg-gray-800' : 'bg-gray-200'} overflow-hidden`}>
-  <div className="container mx-auto px-4">
+  <section id="about" className={`py-10 ${isDarkMode ? 'bg-gray-800' : 'bg-gray-200'} overflow-hidden`}>
+  <div className="container mx-auto px-4 space-y-4 sm:space-y-0 sm:space-x-4">
     <motion.h2
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="text-3xl md:text-4xl font-bold mb-12 text-center"
+      className="text-2xl md:text-3xl font-bold mb-6 text-center leading-relaxed"
     >
       Empowering Over 100 Fast-Growing Businesses
     </motion.h2>
-    <div className="relative mb-20">
-      <div className="flex space-x-12 animate-slide">
+
+    <div className="relative mb-20 mt-8">
+      <div className="flex space-x-10 animate-slide">
         {brandLogos.map((logo, index) => (
           <div key={index} className="flex-shrink-0">
             <img
@@ -601,7 +602,7 @@ export default function LandingPage() {
       initial="initial"
       whileInView="whileInView"
       viewport={{ once: true }}
-      className="grid md:grid-cols-3 gap-8"
+      className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8"
     >
       {[
         {
@@ -845,7 +846,7 @@ export default function LandingPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="text-xl mb-8"
+              className="text-lg md:text-xl mb-8"
             >
               Subscribe to our newsletter for the latest updates and early access opportunities.
             </motion.p>
@@ -856,17 +857,17 @@ export default function LandingPage() {
               transition={{ delay: 0.4 }}
               className="max-w-md mx-auto"
             >
-              <form className="flex">
+              <form className="flex flex-col sm:flex-row">
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className={`flex-grow px-4 py-2 rounded-l-md ${
+                  className={`flex-grow px-4 py-2 rounded-t-md sm:rounded-l-md sm:rounded-t-none mb-2 sm:mb-0 ${
                     isDarkMode ? 'bg-gray-700 text-white' : 'bg-gray-100 text-gray-900'
                   }`}
                 />
                 <button
                   type="submit"
-                  className={`px-6 py-2 rounded-r-md ${
+                  className={`px-6 py-2 rounded-b-md sm:rounded-r-md sm:rounded-b-none ${
                     isDarkMode 
                       ? 'bg-purple-600 hover:bg-purple-700' 
                       : 'bg-purple-500 hover:bg-purple-600'
@@ -884,7 +885,7 @@ export default function LandingPage() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-sm mb-4 md:mb-0">© Copyright 2024. All Rights Reserved by ZVortex</p>
-            <nav className="flex space-x-4">
+            <nav className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4">
               <a href="#" className="text-sm hover:text-purple-400 transition-colors">Contact</a>
               <a href="/terms" className="text-sm hover:text-purple-400 transition-colors">Terms & Conditions</a>
               <a href="/privacy" className="text-sm hover:text-purple-400 transition-colors">Privacy Policy</a>
