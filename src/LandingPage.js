@@ -5,6 +5,8 @@ import { Navigation, Pagination, Autoplay } from 'swiper/modules'
 import { ChevronDown, Menu, X, Sun, Moon, BarChart, Users, Zap, Shield, Award, Clock, Rocket, Target, Layers } from 'lucide-react'
 import xjs from './X.js'
 import { Link } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChartBar, faChartLine, faBox, faGlobe, faFileAlt, faDollarSign, faUsers, faPercent, faLayerGroup, faSun, faMoon, faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import 'swiper/css'
 import 'swiper/css/navigation'
@@ -26,6 +28,19 @@ import graph2 from './image/2.svg';
 import analytics from './image/analytics.jpg';
 import apis from './image/apis.jpg';
 import md from './image/md.jpg';
+/*
+import dataVisualizationImage from './images/md.jpg';
+import performanceAnalyticsImage from './images/md.jpg';
+import inventoryTrackingImage from './images/md.jpg';
+import crossPlatformImage from './images/md.jpg';
+import customReportsImage from './images/md.jpg';
+import salesTrackingImage from './images/graphs.png';
+import customerInsightsImage from './images/md.jpg';
+import promotionsManagementImage from './images/md.jpg';
+import multiChannelSupportImage from './images/md.jpg';
+*/
+
+const placeholderImage = "https://via.placeholder.com/300x200.png?text=Feature+Image";
 
 const ImageGallery = () => {
   const [visibleImages, setVisibleImages] = useState([]);
@@ -289,6 +304,51 @@ export default function LandingPage() {
     transition: { staggerChildren: 0.2 }
   }
 
+  const features = [
+    {
+      title: "Real-Time Data Visualizations",
+      description: "Instantly grasp key performance indicators with visually appealing charts and graphs.",
+      icon: <FontAwesomeIcon icon={faChartBar} className="w-12 h-12 text-purple-500" />,
+      benefit: "Make informed, data-driven decisions with easy-to-understand visual representations of your business data.",
+      image: placeholderImage
+    },
+    {
+      title: "Comprehensive Performance Analytics",
+      description: "Track sales, inventory, profit margins, and customer activity over time.",
+      icon: <FontAwesomeIcon icon={faChartLine} className="w-12 h-12 text-purple-500" />,
+      benefit: "Gain an in-depth understanding of business trends to optimize operations and identify growth opportunities.",
+      image: placeholderImage
+    },
+    {
+      title: "Inventory Tracking and Management",
+      description: "Real-time inventory management with low-stock alerts and reorder reminders.",
+      icon: <FontAwesomeIcon icon={faBox} className="w-12 h-12 text-purple-500" />,
+      benefit: "Prevent stockouts and ensure you're always ready to meet customer demand.",
+      image: placeholderImage
+    },
+    {
+      title: "Sales and Revenue Tracking",
+      description: "Track sales performance, revenue growth, and customer purchase behaviors in real-time.",
+      icon: <FontAwesomeIcon icon={faDollarSign} className="w-12 h-12 text-purple-500" />,
+      benefit: "Focus on your best-performing products and tailor promotions accordingly.",
+      image: placeholderImage
+    },
+    {
+      title: "Customer Insights and Management",
+      description: "Manage customer profiles and generate insights into customer segments.",
+      icon: <FontAwesomeIcon icon={faUsers} className="w-12 h-12 text-purple-500" />,
+      benefit: "Tailor marketing campaigns to specific customer segments, improving retention and lifetime value.",
+      image: placeholderImage
+    },
+    {
+      title: "Multi-Store or Multi-Channel Support",
+      description: "Manage multiple storefronts or sales channels from a single interface.",
+      icon: <FontAwesomeIcon icon={faLayerGroup} className="w-12 h-12 text-purple-500" />,
+      benefit: "Get a complete picture of your business across all locations or channels for better resource allocation and strategy.",
+      image: placeholderImage
+    }
+  ];
+
   return (
     <div className={`min-h-screen ${isDarkMode ? 'bg-gradient-to-b from-gray-900 to-gray-800' : 'bg-gradient-to-b from-gray-100 to-white'} text-gray-900 dark:text-white transition-colors duration-1`}>
       <motion.header
@@ -344,13 +404,13 @@ export default function LandingPage() {
             
             <div className="flex items-center space-x-4">
               <button onClick={toggleTheme} className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 transition-colors">
-                {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+                <FontAwesomeIcon icon={isDarkMode ? faSun : faMoon} size="lg" />
               </button>
               <Link to="/demo-request" className="hidden md:inline-block px-4 py-2 rounded-md bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 transition-colors text-white">
                 Request Demo
               </Link>
               <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                {isMenuOpen ? <X /> : <Menu />}
+                <FontAwesomeIcon icon={isMenuOpen ? faTimes : faBars} size="lg" />
               </button>
             </div>
           </div>
@@ -365,28 +425,29 @@ export default function LandingPage() {
           >
             <nav className="flex flex-col space-y-4 px-4">
               {navItems.map((item, index) => (
-                <div key={index} className="relative group"
-                     onMouseEnter={() => setActiveDropdown(item.title)}
-                     onMouseLeave={() => setActiveDropdown(null)}>
-                  <a href={item.href || '#'} className="hover:text-purple-400 transition-colors">
+                <div key={index} className="relative">
+                  <button
+                    onClick={() => setActiveDropdown(activeDropdown === item.title ? null : item.title)}
+                    className="w-full text-left hover:text-purple-400 transition-colors py-2"
+                  >
                     {item.title}
-                  </a>
+                  </button>
                   {item.dropdown && (
                     <AnimatePresence>
                       {activeDropdown === item.title && (
                         <motion.div
-                          initial={{ opacity: 0, y: -10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -10 }}
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
                           transition={{ duration: 0.2 }}
-                          className={`absolute left-0 mt-2 w-48 rounded-md shadow-lg ${isDarkMode ? 'bg-gray-800' : 'bg-white'} ring-1 ring-black ring-opacity-5`}
+                          className={`mt-2 ${isDarkMode ? 'bg-gray-700' : 'bg-white'}`}
                         >
-                          <div className="py-1">
+                          <div className="py-2">
                             {item.dropdown.map((dropdownItem, dropdownIndex) => (
                               <a
                                 key={dropdownIndex}
                                 href={dropdownItem.href}
-                                className={`block px-4 py-2 text-sm ${isDarkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'}`}
+                                className={`block px-4 py-2 text-sm ${isDarkMode ? 'text-gray-300 hover:bg-gray-600' : 'text-gray-700 hover:bg-gray-200'}`}
                               >
                                 {dropdownItem.title}
                               </a>
@@ -492,45 +553,6 @@ export default function LandingPage() {
               <ImageGallery2 />
             </motion.div>
           </section>
-          <div className="container mx-auto px-4">
-            <motion.h2
-              {...fadeInUp}
-              className="text-3xl md:text-4xl font-bold mb-12 text-center"
-            >
-              ZVortex Features
-            </motion.h2>
-            <motion.div
-              variants={staggerChildren}
-              initial="initial"
-              whileInView="whileInView"
-              viewport={{ once: true }}
-              className="grid md:grid-cols-3 gap-8"
-            >
-              {[
-                {
-                  title: "Launch and Manage Cross-Platform Campaigns",
-                  description: "Effortlessly create, manage, and optimize ads, emails, and social media campaigns with seamless one-click integrations."
-                },
-                {
-                  title: "Advanced Scheduling and Collaboration Tools",
-                  description: "Streamline planning and executing marketing campaigns across your team with intuitive scheduling and collaborative features."
-                },
-                {
-                  title: "Extensive Analytics & Reporting",
-                  description: "Monitor your campaign performance in real-time with detailed analytics and customizable reports."
-                }
-              ].map((feature, index) => (
-                <motion.div
-                  key={index}
-                  variants={fadeInUp}
-                  className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow`}
-                >
-                  <h3 className="text-xl font-semibold mb-4">{feature.title}</h3>
-                  <p>{feature.description}</p>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
         </section>
 
   <section id="about" className={`py-10 ${isDarkMode ? 'bg-gray-800' : 'bg-gray-200'} overflow-hidden`}>
@@ -796,6 +818,43 @@ export default function LandingPage() {
           </div>
         </section>
 
+        <section id="features" className="py-20">
+          <div className="container mx-auto px-4">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-3xl md:text-4xl font-bold mb-12 text-center"
+            >
+              Powerful Features for Your Business
+            </motion.h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {features.map((feature, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className={`${isDarkMode ? 'bg-gray-800' : 'bg-white'} p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow`}
+                >
+                  <div className="flex items-center mb-4">
+                    {feature.icon}
+                    <h3 className="text-xl font-semibold ml-4">{feature.title}</h3>
+                  </div>
+                  <img 
+                    src={feature.image} 
+                    alt={feature.title} 
+                    className="w-full h-48 object-cover rounded-lg mb-4"
+                  />
+                  <p className="mb-4">{feature.description}</p>
+                  <p className="text-sm text-purple-500 font-semibold">Benefit: {feature.benefit}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section className={`py-20 ${isDarkMode ? 'bg-gray-900' : 'bg-white'}`}>
           <div className="container mx-auto px-4 text-center">
             <motion.h2
@@ -900,3 +959,4 @@ export default function LandingPage() {
     </div>
   )
 }
+
