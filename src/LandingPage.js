@@ -502,9 +502,9 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <section id="gallery" className={`py-20 ${isDarkMode ? 'bg-gray-850' : 'bg-grey-100'}`}>
-          <motion.div {...fadeInUp} className="container mx-auto flex flex-row items-stretch justify-center">
-            <div className="w-full h-[700px]">
+        <section id="gallery" className={`py-10 md:py-20 ${isDarkMode ? 'bg-gray-850' : 'bg-grey-100'}`}>
+          <motion.div {...fadeInUp} className="container mx-auto flex flex-row items-center justify-center">
+            <div className="w-full max-w-3xl h-auto max-h-[500px] md:max-h-[700px]">
               <img src={text} alt="text" className="w-full h-full object-contain" />
             </div>
           </motion.div>
